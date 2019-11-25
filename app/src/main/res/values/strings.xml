@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Language Helper</string>
+    <string name="startButtonText">Start</string>
+    <string name="startButtonLabelText">Start recording, then see the results below.</string>
+</resources>
