@@ -8,6 +8,7 @@ import android.media.MediaRecorder
 import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recorder: AudioRecord
     private lateinit var socket: Socket
 
+    private lateinit var host: EditText
+    private lateinit var port: EditText
     private lateinit var button: Button
     private lateinit var results: TextView
 
@@ -31,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         this.checkPermissions()
 
+        host = findViewById(R.id.host)
+        port = findViewById(R.id.port)
         button = findViewById(R.id.start)
         results = findViewById(R.id.results)
 
@@ -50,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun connect() {
-        this.socket = Socket("192.168.1.16", 8080)
+        this.socket = Socket(host.text.toString(), port.text.toString().toInt())
     }
 
     private fun disconnect() {
@@ -66,6 +71,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun start() {
         this.button.text = "Stop"
+        this.host.isEnabled = false
+        this.port.isEnabled = false
         this.recording = true
 
         AsyncTask.execute {
@@ -147,6 +154,8 @@ class MainActivity : AppCompatActivity() {
     private fun stop() {
         this.recording = false
         this.button.text = "Start"
+        this.host.isEnabled = true
+        this.port.isEnabled = true
     }
 
     private fun getStack(err: Exception): String {
