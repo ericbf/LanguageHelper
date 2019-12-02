@@ -2,4 +2,5 @@
     <string name="app_name">Language Helper</string>
     <string name="startButtonText">Start</string>
     <string name="startButtonLabelText">Start recording, then see the results below.</string>
+    <string name="title_activity_demo">Demo</string>
 </resources>
