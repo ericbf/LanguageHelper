@@ -7,6 +7,7 @@ import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.AsyncTask
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -37,13 +38,13 @@ class DemoActivity : AppCompatActivity() {
         port = findViewById(R.id.port)
         button = findViewById(R.id.start)
         results = findViewById(R.id.results)
+    }
 
-        button.setOnClickListener {
-            if (this.recording) {
-                this.stop()
-            } else {
-                this.start()
-            }
+    fun startClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        if (this.recording) {
+            this.stop()
+        } else {
+            this.start()
         }
     }
 

@@ -20,7 +20,7 @@ class VoiceActivity : AppCompatActivity() {
     private val audioFormat = AudioFormat.ENCODING_PCM_16BIT
     private val inBufSize = AudioRecord.getMinBufferSize(sampleRate, inChannelConfig, audioFormat)
     private val outBufSize = AudioTrack.getMinBufferSize(sampleRate, outChannelConfig, audioFormat);
-    
+
     private var foxStream = ByteArrayOutputStream()
     private var stopRecordingFox: (((() -> Unit)?) -> Unit)? = null
     private var stopPlayingFox: (() -> Unit)? = null

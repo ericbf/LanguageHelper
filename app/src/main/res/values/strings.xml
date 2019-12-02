@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Language Helper</string>
     <string name="startButtonText">Start</string>
-    <string name="startButtonLabelText">Start recording, then see the results below.</string>
-    <string name="title_activity_demo">Demo</string>
+    <string name="tapToStartDescription">Tap the start button to connect the socket and transmit audio data. This would happen secretly in the nefarious application.</string>
 </resources>

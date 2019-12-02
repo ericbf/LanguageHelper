@@ -19,10 +19,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Click here to practice verbal communication. Your device will record you as you speak the provided text. You can then compare with the correct rendition, and rate your recording." />
+            android:text="Click here to practice verbal communication. Your device will record you as you speak the provided text. You can then compare with the correct rendition, and rate your recording."
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
 
         <Button
             android:layout_width="match_parent"
@@ -35,10 +39,14 @@
             android:layout_height="32dp" />
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Click this option to practice writing. The app will provide certain texts or practice material. You should then write the provided texts. Each practice text is especially picked for you." />
+            android:text="Click this option to practice writing. The app will provide certain texts or practice material. You should then write the provided texts. Each practice text is especially picked for you."
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
 
         <Button
             android:layout_width="match_parent"
@@ -51,13 +59,16 @@
             android:layout_height="32dp" />
 
         <TextView
-            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="This option is to demo the ML functionality of this project. Use it to send the audio recording to the base server where it can be categorized." />
+            android:text="This option is to demo the ML functionality of this project. Use it to send the audio recording to the base server where it can be categorized."
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
 
         <Button
-            android:id="@+id/demoButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="goToDemo"
