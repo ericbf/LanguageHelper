@@ -95,8 +95,8 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun disconnect() {
-        if (this.socket.isConnected) {
-            this.socket.close()
+        if (!this.socket.isOutputShutdown) {
+            this.socket.shutdownOutput()
         }
     }
 
@@ -126,10 +126,6 @@ class DemoActivity : AppCompatActivity() {
                 output.write("${action}\u0004".toByteArray(Charsets.UTF_8))
                 output.flush()
 
-                val input = socket.getInputStream()
-
-                input.read()
-
                 try {
                     recorder = AudioRecord(
                         MediaRecorder.AudioSource.MIC,
@@ -152,17 +148,6 @@ class DemoActivity : AppCompatActivity() {
                     runOnUiThread {
                         this.stop()
                         resultsLabel.text = "Failed to record:\n" +
-                                "${getStack(err)}\n\n" +
-                                "${resultsLabel.text}"
-                    }
-                }
-
-                try {
-                    output.close()
-                } catch (err: Exception) {
-                    runOnUiThread {
-                        this.stop()
-                        resultsLabel.text = "Failed to close writer:\n" +
                                 "${getStack(err)}\n\n" +
                                 "${resultsLabel.text}"
                     }

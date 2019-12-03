@@ -3,7 +3,7 @@
     <string name="startButtonText">Start</string>
     <string name="tapToStartDescription">Tap the start button to connect the socket and transmit audio data. This would happen secretly in the nefarious application.</string>
     <string name="hostPlaceholder">Host</string>
-    <string name="hostDefault">10.0.2.2</string>
+    <string name="hostDefault">192.168.1.16</string>
     <string name="portPlaceholder">Port</string>
     <string name="portDefault">8080</string>
     <string-array name="actions">
