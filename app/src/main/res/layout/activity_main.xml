@@ -6,73 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" >
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Click here to practice verbal communication. Your device will record you as you speak the provided text. You can then compare with the correct rendition, and rate your recording."
-            android:textSize="18sp" />
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="vertical">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Click here to practice verbal communication. Your device will record you as you speak the provided text. You can then compare with the correct rendition, and rate your recording."
+                android:textSize="18sp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="goToVoice"
-            android:text="Practice Voice" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="goToVoice"
+                android:text="Practice Voice" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Click this option to practice writing. The app will provide certain texts or practice material. You should then write the provided texts. Each practice text is especially picked for you."
-            android:textSize="18sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Click this option to practice writing. The app will provide certain texts or practice material. You should then write the provided texts. Each practice text is especially picked for you."
+                android:textSize="18sp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="goToWriting"
-            android:text="Practice Writing" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="goToWriting"
+                android:text="Practice Writing" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="This option is to demo the ML functionality of this project. Use it to send the audio recording to the base server where it can be categorized."
-            android:textSize="18sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This option is to demo the ML functionality of this project. Use it to send the audio recording to the base server where it can be categorized."
+                android:textSize="18sp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="goToDemo"
-            android:text="Run Demo" />
-    </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="goToDemo"
+                android:text="Run Demo" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

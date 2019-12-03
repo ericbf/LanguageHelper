@@ -6,43 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".WritingActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Write the below text on a piece of paper, then hit the next button. Each sample will give you specialized practice to improve your skills."
-            android:textSize="18sp" />
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="vertical">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="64dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Write the below text on a piece of paper, then hit the next button. Each sample will give you specialized practice to improve your skills."
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/sample"
-            android:layout_width="match_parent"
-            android:layout_height="94dp"
-            android:text="The quick brown fox jumps over the lazy dog."
-            android:gravity="center_vertical|left"
-            android:textSize="24sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="64dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:id="@+id/sample"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:gravity="center_vertical|left"
+                android:text="The quick brown fox jumps over the lazy dog."
+                android:textSize="24sp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="nextSample"
-            android:text="Next" />
-    </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="nextSample"
+                android:text="Next" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
