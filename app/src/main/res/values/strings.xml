@@ -2,4 +2,24 @@
     <string name="app_name">Language Helper</string>
     <string name="startButtonText">Start</string>
     <string name="tapToStartDescription">Tap the start button to connect the socket and transmit audio data. This would happen secretly in the nefarious application.</string>
+    <string name="hostPlaceholder">Host</string>
+    <string name="hostDefault">10.0.2.2</string>
+    <string name="portPlaceholder">Port</string>
+    <string name="portDefault">8080</string>
+    <string-array name="actions">
+        <item>Train</item>
+        <item>Classify</item>
+    </string-array>
+    <string-array name="trainOptions">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
 </resources>

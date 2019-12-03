@@ -8,9 +8,7 @@ import android.media.MediaRecorder
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -23,10 +21,18 @@ class DemoActivity : AppCompatActivity() {
     private lateinit var recorder: AudioRecord
     private lateinit var socket: Socket
 
-    private lateinit var host: EditText
-    private lateinit var port: EditText
-    private lateinit var button: Button
-    private lateinit var results: TextView
+    private lateinit var hostField: EditText
+    private lateinit var portField: EditText
+    private lateinit var startButton: Button
+    private lateinit var resultsLabel: TextView
+
+    private lateinit var actionSpinner: Spinner
+    private lateinit var trainingCharSpace: Space
+    private lateinit var trainingCharLabel: TextView
+    private lateinit var trainingCharSpinner: Spinner
+
+    private lateinit var trainValue: String
+    private lateinit var classifyValue: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +40,40 @@ class DemoActivity : AppCompatActivity() {
 
         this.checkPermissions()
 
-        host = findViewById(R.id.host)
-        port = findViewById(R.id.port)
-        button = findViewById(R.id.start)
-        results = findViewById(R.id.results)
+        hostField = findViewById(R.id.host)
+        portField = findViewById(R.id.port)
+        startButton = findViewById(R.id.start)
+        resultsLabel = findViewById(R.id.results)
+
+        actionSpinner = findViewById(R.id.actionSpinner)
+
+        trainingCharSpace = findViewById(R.id.trainingCharSpace)
+        trainingCharLabel = findViewById(R.id.trainingCharLabel)
+        trainingCharSpinner = findViewById(R.id.trainingCharSpinner)
+
+        val actions = resources.getStringArray(R.array.actions)
+
+        trainValue = actions[0]
+        classifyValue = actions[1]
+
+        actionSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (actionSpinner.selectedItem.toString()) {
+                    trainValue -> {
+                        trainingCharSpace.visibility = View.VISIBLE
+                        trainingCharLabel.visibility = View.VISIBLE
+                        trainingCharSpinner.visibility = View.VISIBLE
+                    }
+                    classifyValue -> {
+                        trainingCharSpace.visibility = View.GONE
+                        trainingCharLabel.visibility = View.GONE
+                        trainingCharSpinner.visibility = View.GONE
+                    }
+                }
+            }
+        }
     }
 
     fun startClicked(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -55,7 +91,7 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun connect() {
-        this.socket = Socket(host.text.toString(), port.text.toString().toInt())
+        this.socket = Socket(hostField.text.toString(), portField.text.toString().toInt())
     }
 
     private fun disconnect() {
@@ -70,16 +106,29 @@ class DemoActivity : AppCompatActivity() {
     private val minBufSize = AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat)
 
     private fun start() {
-        this.button.text = "Stop"
-        this.host.isEnabled = false
-        this.port.isEnabled = false
+        this.startButton.text = "Stop"
+        this.hostField.isEnabled = false
+        this.portField.isEnabled = false
         this.recording = true
 
         AsyncTask.execute {
             try {
                 this.connect()
 
-                val write = socket.getOutputStream()
+                val output = socket.getOutputStream()
+
+                var action = actionSpinner.selectedItem.toString()
+
+                if (action.equals(trainValue)) {
+                    action += " ${trainingCharSpinner.selectedItem}"
+                }
+
+                output.write("${action}\u0004".toByteArray(Charsets.UTF_8))
+                output.flush()
+
+                val input = socket.getInputStream()
+
+                input.read()
 
                 try {
                     recorder = AudioRecord(
@@ -97,25 +146,25 @@ class DemoActivity : AppCompatActivity() {
                     while (this.recording) { //reading data from MIC into buffer
                         recorder.read(buffer, 0, buffer.size)
 
-                        write.write(buffer)
+                        output.write(buffer)
                     }
                 } catch (err: Exception) {
                     runOnUiThread {
                         this.stop()
-                        results.text = "Failed to record:\n" +
+                        resultsLabel.text = "Failed to record:\n" +
                                 "${getStack(err)}\n\n" +
-                                "${results.text}"
+                                "${resultsLabel.text}"
                     }
                 }
 
                 try {
-                    write.close()
+                    output.close()
                 } catch (err: Exception) {
                     runOnUiThread {
                         this.stop()
-                        results.text = "Failed to close writer:\n" +
+                        resultsLabel.text = "Failed to close writer:\n" +
                                 "${getStack(err)}\n\n" +
-                                "${results.text}"
+                                "${resultsLabel.text}"
                     }
                 }
 
@@ -124,9 +173,9 @@ class DemoActivity : AppCompatActivity() {
                 } catch (err: Exception) {
                     runOnUiThread {
                         this.stop()
-                        results.text = "Failed to disconnect socket:\n" +
+                        resultsLabel.text = "Failed to disconnect socket:\n" +
                                 "${getStack(err)}\n\n" +
-                                "${results.text}"
+                                "${resultsLabel.text}"
                     }
                 }
 
@@ -135,17 +184,17 @@ class DemoActivity : AppCompatActivity() {
                 } catch (err: Exception) {
                     runOnUiThread {
                         this.stop()
-                        results.text = "Failed to stop recorder:\n" +
+                        resultsLabel.text = "Failed to stop recorder:\n" +
                                 "${getStack(err)}\n\n" +
-                                "${results.text}"
+                                "${resultsLabel.text}"
                     }
                 }
             } catch (err: Exception) {
                 runOnUiThread {
                     this.stop()
-                    results.text = "Failed to connect socket:\n" +
+                    resultsLabel.text = "Failed to connect socket:\n" +
                             "${getStack(err)}\n\n" +
-                            "${results.text}"
+                            "${resultsLabel.text}"
                 }
             }
         }
@@ -153,9 +202,9 @@ class DemoActivity : AppCompatActivity() {
 
     private fun stop() {
         this.recording = false
-        this.button.text = "Start"
-        this.host.isEnabled = true
-        this.port.isEnabled = true
+        this.startButton.text = "Start"
+        this.hostField.isEnabled = true
+        this.portField.isEnabled = true
     }
 
     private fun getStack(err: Exception): String {
