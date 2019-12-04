@@ -3,9 +3,15 @@
     <string name="startButtonText">Start</string>
     <string name="tapToStartDescription">Tap the start button to connect the socket and transmit audio data. This would happen secretly in the nefarious application.</string>
     <string name="hostPlaceholder">Host</string>
-    <string name="hostDefault">192.168.1.16</string>
+    <string name="hostDefault">10.250.60.95</string>
     <string name="portPlaceholder">Port</string>
     <string name="portDefault">8080</string>
+    <string name="practiceVoiceLabel">Click here to practice verbal communication. Your device will record you as you speak the provided text. You can then compare with the correct rendition, and rate your recording.</string>
+    <string name="practiceVoiceButton">Practice Voice</string>
+    <string name="practiceWritingLabel">Click this option to practice writing. The app will provide certain texts or practice material. You should then write the provided texts. Each practice text is especially picked for you.</string>
+    <string name="practiceWritingButton">Practice Writing</string>
+    <string name="runDemoLabel">This option is to demo the ML functionality of this project. Use it to send the audio recording to the base server where it can be categorized.</string>
+    <string name="runDemoButton">Run Demo</string>
     <string-array name="actions">
         <item>Train</item>
         <item>Classify</item>

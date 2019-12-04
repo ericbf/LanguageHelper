@@ -53,7 +53,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="recordFox"
-                    android:text="Record" />
+                    android:text="Record"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/whiteColor" />
 
                 <Button
                     android:id="@+id/playFox"
@@ -62,14 +64,18 @@
                     android:layout_weight="1"
                     android:enabled="false"
                     android:onClick="playFox"
-                    android:text="Play" />
+                    android:text="Play"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/whiteColor" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="sampleFox"
-                    android:text="Sample" />
+                    android:text="Sample"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/whiteColor" />
             </LinearLayout>
 
             <Space
@@ -96,7 +102,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="recordBox"
-                    android:text="Record" />
+                    android:text="Record"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/whiteColor" />
 
                 <Button
                     android:id="@+id/playBox"
@@ -105,14 +113,18 @@
                     android:layout_weight="1"
                     android:enabled="false"
                     android:onClick="playBox"
-                    android:text="Play" />
+                    android:text="Play"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/whiteColor" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="sampleBox"
-                    android:text="Sample" />
+                    android:text="Sample"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/whiteColor"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

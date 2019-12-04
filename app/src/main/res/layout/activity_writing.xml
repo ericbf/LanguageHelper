@@ -49,7 +49,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="nextSample"
-                android:text="Next" />
+                android:text="Next"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/whiteColor" />
         </LinearLayout>
     </ScrollView>
 
